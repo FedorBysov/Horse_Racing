@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.navigation_api"
+    namespace = "com.example.rating_impl"
     compileSdk = 35
 
     defaultConfig {
@@ -34,5 +34,11 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 
 }

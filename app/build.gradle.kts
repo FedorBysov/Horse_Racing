@@ -57,4 +57,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(project(":core:navigation:api"))
+    implementation(project(":core:navigation:impl"))
+
+    implementation(project(":feature:rating:api"))
+    implementation(project(":feature:rating:impl"))
+    implementation(project(":feature:race:api"))
+    implementation(project(":feature:race:impl"))
+
 }
