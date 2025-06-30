@@ -42,5 +42,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(project(":core:navigation:api"))
+    implementation(libs.androidx.navigation.compose)
 
 }

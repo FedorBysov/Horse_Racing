@@ -3,24 +3,25 @@ package com.example.horseracing
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.horseracing.ui.theme.HorseRacingTheme
 import com.example.navigation_impl.AppNavigation
+import com.example.race_api.RaceScreen
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+    
+    @Inject
+    lateinit var raceScreen: RaceScreen
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as HorseRacingApp).appComponent.inject(this)
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             HorseRacingTheme {
-                AppNavigation(modifier = Modifier.fillMaxSize())
+                raceScreen.RaceContent()
+                //AppNavigation(modifier = Modifier.fillMaxSize())
             }
         }
     }
