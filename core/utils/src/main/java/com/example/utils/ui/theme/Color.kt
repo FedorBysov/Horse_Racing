@@ -1,4 +1,4 @@
-package com.example.horseracing.ui.theme
+package com.example.utils.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

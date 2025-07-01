@@ -1,4 +1,4 @@
-package com.example.race_impl.ui
+package com.example.race_impl.presentation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -115,7 +115,7 @@ class RaceScreenImpl @Inject constructor(
 @Composable
 fun RaceContent(
     raceApi: RaceApi,
-    modifier: Modifier = Modifier
+    modifier: Modifier
 ) {
     RaceScreenImpl(raceApi).RaceContent()
 } 

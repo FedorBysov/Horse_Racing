@@ -1,4 +1,4 @@
-package com.example.horseracing.ui.theme
+package com.example.utils.ui.theme
 
 import android.app.Activity
 import android.os.Build

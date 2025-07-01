@@ -1,4 +1,4 @@
-package com.example.race_impl.ui
+package com.example.race_impl.presentation
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
