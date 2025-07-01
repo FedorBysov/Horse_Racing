@@ -10,18 +10,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.navigation_api.FeatureApi
 import com.example.race_api.RaceRoutes
-import com.example.rating_api.RatingRoutes
-import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
 fun AppNavigation(
-    modifier: Modifier
+    modifier: Modifier = Modifier,
+    features: Set<FeatureApi>
 ) {
     val navController = rememberNavController()
     val navItems = BottomNavigationFactory.getBottomNavItems()
@@ -48,20 +48,15 @@ fun AppNavigation(
             }
         }
     ) { paddingValues ->
-
         Box(modifier = Modifier.padding(paddingValues)) {
             NavHost(
                 navController = navController,
-                startDestination = RaceRoutes.HOME
+                startDestination = RaceRoutes.baseRoute,
+                modifier = Modifier
             ) {
-
-                composable(RaceRoutes.baseRoute) {
+                features.forEach { feature ->
+                    feature.registerGraph(this, navController)
                 }
-
-                composable(route = RatingRoutes.baseRoute) {
-                }
-
-
             }
         }
     }

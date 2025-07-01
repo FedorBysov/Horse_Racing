@@ -11,7 +11,6 @@ import com.example.network_api.RaceApi
 import com.example.race_api.RaceScreen
 import com.example.race_api.model.Horse
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class RaceScreenImpl @Inject constructor(
     private val raceApi: RaceApi
@@ -111,4 +110,12 @@ class RaceScreenImpl @Inject constructor(
             }
         }
     }
+}
+
+@Composable
+fun RaceContent(
+    raceApi: RaceApi,
+    modifier: Modifier = Modifier
+) {
+    RaceScreenImpl(raceApi).RaceContent()
 } 
