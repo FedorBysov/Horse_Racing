@@ -4,12 +4,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.example.network_api.RaceApi
 import com.example.race_api.RaceFeatureApi
+import com.example.race_api.RaceScreen
 import javax.inject.Inject
 
 class RaceFeatureImpl @Inject constructor(
-    private val raceApi: RaceApi
+    private val raceScreen: RaceScreen
 ) : RaceFeatureApi {
     override val raceRoute = "race"
     
@@ -19,10 +19,7 @@ class RaceFeatureImpl @Inject constructor(
         modifier: Modifier
     ) {
         navGraphBuilder.composable(raceRoute) {
-            RaceContent(
-                raceApi = raceApi,
-                modifier = modifier
-            )
+            raceScreen.RaceContent()
         }
     }
 } 

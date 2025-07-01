@@ -42,7 +42,9 @@ android {
 
 dependencies {
     implementation(project(":core:navigation:api"))
-    implementation(project(":feature:rating:api"))
+    api(project(":feature:rating:api"))
+    implementation(project(":core:utils"))
+
 
     implementation(libs.androidx.core.ktx)
     implementation(platform(libs.androidx.compose.bom))

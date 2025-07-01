@@ -26,13 +26,6 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -54,6 +47,8 @@ dependencies {
     implementation(project(":core:network:api"))
     implementation(project(":feature:race:api"))
     implementation(project(":core:navigation:api"))
+    implementation(project(":core:storage:api"))
+
 
     implementation(libs.androidx.core.ktx)
     implementation(platform(libs.androidx.compose.bom))

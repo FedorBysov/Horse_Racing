@@ -1,13 +1,13 @@
 package com.example.storage_impl.di
 
-import androidx.room.processor.Context
+import android.content.Context
 import com.example.storage_api.dao.RatingDao
 import com.example.utils.di.ApplicationScope
 import dagger.BindsInstance
 import dagger.Component
 
 @ApplicationScope
-@Component(modules = [RatingStorageComponent::class])
+@Component(modules = [RatingStorageModule::class])
 interface RatingStorageComponent {
 
     fun ratingDao(): RatingDao

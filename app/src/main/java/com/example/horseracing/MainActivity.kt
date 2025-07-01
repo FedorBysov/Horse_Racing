@@ -8,8 +8,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.horseracing.di.AppComponent
-import com.example.utils.theme.HorseRacingTheme
 import com.example.navigation_impl.AppNavigation
+import com.example.utils.ui.theme.HorseRacingTheme
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            com.example.utils.theme.HorseRacingTheme {
+            HorseRacingTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background

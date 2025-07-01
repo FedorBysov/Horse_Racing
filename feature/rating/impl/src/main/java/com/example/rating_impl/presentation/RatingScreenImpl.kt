@@ -1,4 +1,4 @@
-package com.example.rating_impl.ui
+package com.example.rating_impl.presentation
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

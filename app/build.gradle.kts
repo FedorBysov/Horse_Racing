@@ -32,17 +32,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.11"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     packaging {
         resources {
@@ -52,13 +52,20 @@ android {
 }
 
 dependencies {
-    // Core Android
+    implementation(project(":core:utils"))
+    implementation(project(":core:navigation:api"))
+    implementation(project(":core:navigation:impl"))
+    implementation(project(":core:network:api"))
+    implementation(project(":core:network:impl"))
+    implementation(project(":core:storage:api"))
+    implementation(project(":core:storage:impl"))
+    implementation(project(":feature:race:api"))
+    implementation(project(":feature:race:impl"))
+    implementation(project(":feature:rating:api"))
+    implementation(project(":feature:rating:impl"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-
-    implementation(libs.androidx.navigation.compose)
-
-    // Compose
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -66,16 +73,12 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.runtime.android)
-    
+    implementation(libs.androidx.navigation.compose)
+
     // Dagger
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
-    
-    // Project modules
-    implementation(project(":core:network:api"))
-    implementation(project(":core:network:impl"))
-    
-    // Testing
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -83,13 +86,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    implementation(project(":core:navigation:api"))
-    implementation(project(":core:navigation:impl"))
-
-    implementation(project(":feature:rating:api"))
-    implementation(project(":feature:rating:impl"))
-    implementation(project(":feature:race:api"))
-    implementation(project(":feature:race:impl"))
-
 }

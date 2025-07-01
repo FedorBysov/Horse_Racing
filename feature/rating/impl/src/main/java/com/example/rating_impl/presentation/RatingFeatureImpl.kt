@@ -1,4 +1,4 @@
-package com.example.rating_impl.ui
+package com.example.rating_impl.presentation
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder

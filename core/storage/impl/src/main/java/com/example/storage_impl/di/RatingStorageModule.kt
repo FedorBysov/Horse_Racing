@@ -11,7 +11,7 @@ import dagger.Provides
 object RatingStorageModule {
 
     @[Provides ApplicationScope]
-    fun provideRatingDataBase(context:Context): RatingDataBase = RatingDataBase.getInstance(context)
+    fun provideRatingDataBase(context: Context): RatingDataBase = RatingDataBase.getInstance(context)
 
     @[Provides ApplicationScope]
     fun provideRatingDao(dataBase: RatingDataBase): RatingDao = dataBase.ratingDao()
