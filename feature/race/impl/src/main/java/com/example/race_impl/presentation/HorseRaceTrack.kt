@@ -17,13 +17,14 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.utils.R as UtilsR
 
 /**
  * Компонент для отображения одной беговой дорожки с анимированной лошадью
- * 
+ *
  * @param horseName Имя лошади, отображаемое слева от дорожки
  * @param progress Прогресс движения лошади от 0f до 1f
  * @param finishPosition Позиция лошади на финише (null если гонка не завершена)
@@ -36,13 +37,13 @@ internal fun HorseRaceTrack(
 ) {
     // Создаем бесконечную анимацию для движений лошади
     val infiniteTransition = rememberInfiniteTransition(label = "horse_animation")
-    
+
     // Сохраняем ширину дорожки для правильного расчета движения
     var trackWidth by remember { mutableStateOf(0) }
-    
+
     // Получаем плотность экрана для конвертации dp в пиксели
     val density = LocalDensity.current
-    
+
     // Создаем анимацию вертикального покачивания лошади
     // Лошадь двигается вверх-вниз на 5 пикселей в каждую сторону
     val bounceAnimation by infiniteTransition.animateFloat(
@@ -87,11 +88,11 @@ internal fun HorseRaceTrack(
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium
             )
-            
+
             // Отображаем медаль и место, если лошадь финишировала
             if (finishPosition != null) {
                 Text(
-                    text = when(finishPosition) {
+                    text = when (finishPosition) {
                         1 -> "🥇 1-е место"
                         2 -> "🥈 2-е место"
                         3 -> "🥉 3-е место"
@@ -151,4 +152,17 @@ internal fun HorseRaceTrack(
             )
         }
     }
-} 
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewHorseRaceTrack() {
+    MaterialTheme {
+        HorseRaceTrack(
+            horseName = "Лошадь 1",
+            progress = 0.7f,
+            finishPosition = 2
+        )
+    }
+}

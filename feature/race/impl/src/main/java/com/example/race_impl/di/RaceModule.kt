@@ -7,20 +7,19 @@ import com.example.race_impl.data.RaceRepositoryImpl
 import com.example.race_impl.domain.RaceRepository
 import com.example.race_impl.domain.interactors.RaceInteractorImpl
 import com.example.race_impl.domain.interactors.RaceUseCase
-import com.example.race_impl.presentation.RaceFeatureImpl
+import com.example.race_impl.RaceFeatureImpl
 import com.example.race_impl.presentation.RaceScreenImpl
 import com.example.utils.di.ApplicationScope
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet
-import javax.inject.Singleton
 
 @Module
 abstract class RaceModule {
 
     @Binds
     @ApplicationScope
-    abstract fun provideRaceFeature(impl: RaceFeatureImpl): RaceFeatureApi
+    abstract fun bindsRaceFeature(impl: RaceFeatureImpl): RaceFeatureApi
 
     @Binds
     @IntoSet

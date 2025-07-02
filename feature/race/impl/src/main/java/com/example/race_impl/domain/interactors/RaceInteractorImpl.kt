@@ -12,7 +12,7 @@ class RaceInteractorImpl @Inject constructor(
 
     override fun watchRaceUseCase(): Flow<RaceUpdateDO> = raceRepository.watchRace()
 
-    override suspend fun saveRaceResults(horses: List<Horse>) =
+    override suspend fun saveRaceResultsUseCase(horses: List<Horse>) =
         raceRepository.saveRaceResults(horses)
 
 

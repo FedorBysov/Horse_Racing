@@ -1,4 +1,4 @@
-package com.example.race_impl.presentation
+package com.example.race_impl
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder

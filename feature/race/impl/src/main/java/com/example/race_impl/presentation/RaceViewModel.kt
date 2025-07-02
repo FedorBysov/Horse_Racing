@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class RaceViewModel @Inject constructor(
+open class RaceViewModel @Inject constructor(
     private val raceUseCase: RaceUseCase
 ) : ViewModel() {
 
@@ -23,10 +23,10 @@ class RaceViewModel @Inject constructor(
             finishPosition = null
         )
     })
-    val horses: StateFlow<List<Horse>> = _horses.asStateFlow()
+    open val horses: StateFlow<List<Horse>> = _horses.asStateFlow()
 
     private val _isRaceStarted = MutableStateFlow(false)
-    val isRaceStarted: StateFlow<Boolean> = _isRaceStarted.asStateFlow()
+    open val isRaceStarted: StateFlow<Boolean> = _isRaceStarted.asStateFlow()
 
     private var finishedCount = 0
 
@@ -89,13 +89,12 @@ class RaceViewModel @Inject constructor(
                         }
                     }
                     isResultSaved = true
-                    _isRaceStarted.value = false
                     Log.d("RaceViewModel", "Calling saveRaceResults()")
                     Log.d(
                         "RaceViewModel",
                         "Saving horses: " + currentHorses.joinToString { "${it.name}:${it.finishPosition}" })
                     viewModelScope.launch {
-                        raceUseCase.saveRaceResults(currentHorses.toList())
+                        raceUseCase.saveRaceResultsUseCase(currentHorses.toList())
                     }
                     raceJob?.cancel()
                     return@collect

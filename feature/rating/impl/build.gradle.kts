@@ -44,6 +44,7 @@ dependencies {
     implementation(project(":core:navigation:api"))
     api(project(":feature:rating:api"))
     implementation(project(":core:utils"))
+    implementation(project(":core:storage:api"))
 
 
     implementation(libs.androidx.core.ktx)

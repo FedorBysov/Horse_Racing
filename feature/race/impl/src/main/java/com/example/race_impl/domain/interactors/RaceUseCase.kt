@@ -8,6 +8,6 @@ interface RaceUseCase {
 
     fun watchRaceUseCase(): Flow<RaceUpdateDO>
 
-    suspend fun saveRaceResults(horses: List<Horse>)
+    suspend fun saveRaceResultsUseCase(horses: List<Horse>)
 
 }

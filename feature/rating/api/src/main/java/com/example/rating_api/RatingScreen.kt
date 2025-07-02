@@ -5,5 +5,5 @@ import androidx.compose.ui.Modifier
 
 interface RatingScreen {
     @Composable
-    fun RatingContent(modifier: Modifier = Modifier)
+    fun RatingContent( )
 } 
