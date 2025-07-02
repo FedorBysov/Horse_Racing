@@ -59,7 +59,6 @@ class RaceScreenImpl @Inject constructor(
 
                 Button(
                     onClick = { viewModel.resetRace() },
-//                    enabled = isRaceStarted
                 ) {
                     Text("Сброс")
                 }

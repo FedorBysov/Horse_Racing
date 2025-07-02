@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.race_api.model.Horse
-import com.example.race_impl.domain.interactors.RaceUseCase
+import com.example.race_impl.domain.interactors.RaceInteractor
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,16 +13,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 open class RaceViewModel @Inject constructor(
-    private val raceUseCase: RaceUseCase
+    private val raceInteractor: RaceInteractor
 ) : ViewModel() {
 
-    private val _horses = MutableStateFlow<List<Horse>>(List(5) { index ->
-        Horse(
-            name = "Лошадь ${index + 1}",
-            progress = 0f,
-            finishPosition = null
-        )
-    })
+    //TODO() Внедрить кол-во из интернета
+    private val _horses = MutableStateFlow<List<Horse>>(emptyList())
     open val horses: StateFlow<List<Horse>> = _horses.asStateFlow()
 
     private val _isRaceStarted = MutableStateFlow(false)
@@ -33,6 +28,19 @@ open class RaceViewModel @Inject constructor(
     private var raceJob: Job? = null
 
     private var isResultSaved = false
+
+    init {
+        viewModelScope.launch {
+            val horsesFromApi = raceInteractor.getHorseListUseCase()
+            _horses.value = horsesFromApi.map { dto ->
+                Horse(
+                    name = dto.name,
+                    progress = 0f,
+                    finishPosition = null
+                )
+            }
+        }
+    }
 
 
     fun resetRace() {
@@ -48,13 +56,20 @@ open class RaceViewModel @Inject constructor(
     fun startRace() {
         Log.d("RaceViewModel", "startRace() called")
         if (_isRaceStarted.value) return
-        resetRace()
-        Log.d("RaceViewModel1", "Starting race")
         raceJob = viewModelScope.launch {
             _isRaceStarted.value = true
             finishedCount = 0
             isResultSaved = false
-            raceUseCase.watchRaceUseCase().collect { update ->
+
+            val horsesFromApi = raceInteractor.getHorseListUseCase()
+            _horses.value = horsesFromApi.map { dto ->
+                Horse(
+                    name = dto.name,
+                    progress = 0f,
+                    finishPosition = null
+                )
+            }
+            raceInteractor.watchRaceUseCase().collect { update ->
                 val currentHorses = _horses.value.toMutableList()
                 val index = update.horseId
                 val horse = currentHorses.getOrNull(index) ?: return@collect
@@ -94,7 +109,7 @@ open class RaceViewModel @Inject constructor(
                         "RaceViewModel",
                         "Saving horses: " + currentHorses.joinToString { "${it.name}:${it.finishPosition}" })
                     viewModelScope.launch {
-                        raceUseCase.saveRaceResultsUseCase(currentHorses.toList())
+                        raceInteractor.saveRaceResultsUseCase(currentHorses.toList())
                     }
                     raceJob?.cancel()
                     return@collect

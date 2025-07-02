@@ -24,7 +24,7 @@ fun AppNavigation(
     features: Set<FeatureApi>
 ) {
     val navController = rememberNavController()
-    val navItems = BottomNavigationFactory.getBottomNavItems()
+    val navItems = getBottomNavItems()
     var selectedRoute by rememberSaveable { mutableStateOf(navItems.first().route) }
 
     Scaffold(

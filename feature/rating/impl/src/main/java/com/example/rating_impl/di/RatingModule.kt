@@ -6,7 +6,7 @@ import com.example.rating_api.RatingScreen
 import com.example.rating_impl.RatingFeatureImpl
 import com.example.rating_impl.data.RatingRepositoryImpl
 import com.example.rating_impl.domain.Interactors.RatingInteractorImpl
-import com.example.rating_impl.domain.Interactors.RatingUseCase
+import com.example.rating_impl.domain.Interactors.RatingInteractor
 import com.example.rating_impl.domain.RatingRepository
 import com.example.rating_impl.presentation.RatingScreenImpl
 import com.example.utils.di.ApplicationScope
@@ -35,5 +35,5 @@ abstract class RatingModule {
 
     @Binds
     @ApplicationScope
-    abstract fun bindRatingUseCase(impl: RatingInteractorImpl): RatingUseCase
+    abstract fun bindRatingUseCase(impl: RatingInteractorImpl): RatingInteractor
 } 

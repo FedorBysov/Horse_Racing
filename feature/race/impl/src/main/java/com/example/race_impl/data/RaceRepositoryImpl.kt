@@ -6,6 +6,7 @@ import com.example.race_impl.domain.RaceRepository
 import com.example.race_impl.domain.entity.RaceUpdateDO
 import com.example.race_impl.domain.toDataBaseObject
 import com.example.race_impl.domain.toDomainObject
+import com.example.race_impl.domain.toRaceResultDomainList
 import com.example.storage_api.dao.RatingDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -21,8 +22,12 @@ class RaceRepositoryImpl @Inject constructor(
     }
 
     override suspend fun saveRaceResults(horses: List<Horse>) {
-        val raceResults = horses.toDomainObject()
+        val raceResults = horses.toRaceResultDomainList()
         val (raceEntity, horseResults) = raceResults.toDataBaseObject()
         ratingDao.insertRaceWithResults(raceEntity, horseResults)
+    }
+
+    override suspend fun getHorseList(): List<Horse> {
+        return raceApi.getHorseList().toDomainObject()
     }
 }

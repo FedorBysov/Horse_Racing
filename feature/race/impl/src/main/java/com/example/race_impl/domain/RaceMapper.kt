@@ -1,5 +1,6 @@
 package com.example.race_impl.domain
 
+import com.example.network_api.model.HorseDto
 import com.example.network_api.model.RaceUpdateDto
 import com.example.race_api.model.Horse
 import com.example.race_impl.domain.entity.RaceResultDO
@@ -8,7 +9,7 @@ import com.example.storage_api.entity.HorseResultEntity
 import com.example.storage_api.entity.RaceEntity
 
 
-fun List<Horse>.toDomainObject(): List<RaceResultDO> {
+fun List<Horse>.toRaceResultDomainList(): List<RaceResultDO> {
     return this.mapNotNull { horse ->
         horse.finishPosition?.let { position ->
             RaceResultDO(
@@ -35,6 +36,13 @@ fun RaceUpdateDto.toDomainObject(): RaceUpdateDO = RaceUpdateDO(
     horseId = this.horseId,
     progress = this.progress
 )
+
+fun List<HorseDto>.toDomainObject(): List<Horse> = this.map { horse ->
+    Horse(
+        name = horse.name,
+        progress = 0f
+    )
+}
 
 
 
