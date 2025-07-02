@@ -1,5 +1,6 @@
 package com.example.network_api
 
+import com.example.network_api.model.HorseDto
 import com.example.network_api.model.RaceUpdateDto
 import kotlinx.coroutines.flow.Flow
 
@@ -9,4 +10,7 @@ interface RaceApi {
      * Гонка идёт ровно 10 секунд, обновления эмитятся примерно каждые 100 мс.
      */
     fun watchRace(): Flow<RaceUpdateDto>
+
+    suspend fun getHorseList(): List<HorseDto>
+
 } 

@@ -14,7 +14,6 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.SharingStarted
 import javax.inject.Inject
 import kotlin.random.Random
-import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Мок-реализация API гонок, которая симулирует гонку между 5 лошадьми.
@@ -31,7 +30,7 @@ class MockRaceApi @Inject constructor() : RaceApi {
      * Каждая лошадь имеет уникальный id (1-5) и имя.
      */
     private val horses = List(5) { index ->
-        HorseDto(id = index, name = "Лошадь $index")
+        HorseDto(id = index  , name = "Лошадь ${index + 1}")
     }
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
@@ -104,4 +103,6 @@ class MockRaceApi @Inject constructor() : RaceApi {
         }
     }.flowOn(Dispatchers.Default) // Выполняем всю работу в фоновом потоке
     .shareIn(scope, SharingStarted.WhileSubscribed(replayExpirationMillis = 0), replay = 0)
+
+    override suspend fun getHorseList(): List<HorseDto> = horses
 }

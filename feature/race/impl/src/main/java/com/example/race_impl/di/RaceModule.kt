@@ -6,7 +6,7 @@ import com.example.race_api.RaceScreen
 import com.example.race_impl.data.RaceRepositoryImpl
 import com.example.race_impl.domain.RaceRepository
 import com.example.race_impl.domain.interactors.RaceInteractorImpl
-import com.example.race_impl.domain.interactors.RaceUseCase
+import com.example.race_impl.domain.interactors.RaceInteractor
 import com.example.race_impl.RaceFeatureImpl
 import com.example.race_impl.presentation.RaceScreenImpl
 import com.example.utils.di.ApplicationScope
@@ -31,7 +31,7 @@ abstract class RaceModule {
 
     @Binds
     @ApplicationScope
-    abstract fun bindRaceUseCase(impl: RaceInteractorImpl): RaceUseCase
+    abstract fun bindRaceUseCase(impl: RaceInteractorImpl): RaceInteractor
 
     @Binds
     @ApplicationScope

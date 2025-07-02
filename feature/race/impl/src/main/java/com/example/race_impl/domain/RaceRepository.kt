@@ -10,4 +10,6 @@ interface RaceRepository {
     fun watchRace(): Flow<RaceUpdateDO>
 
     suspend fun saveRaceResults(horses: List<Horse>)
+
+    suspend fun getHorseList(): List<Horse>
 }

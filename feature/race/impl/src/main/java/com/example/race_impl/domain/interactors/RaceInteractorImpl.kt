@@ -8,12 +8,13 @@ import javax.inject.Inject
 
 class RaceInteractorImpl @Inject constructor(
     private val raceRepository: RaceRepository
-) : RaceUseCase {
+) : RaceInteractor {
 
     override fun watchRaceUseCase(): Flow<RaceUpdateDO> = raceRepository.watchRace()
 
     override suspend fun saveRaceResultsUseCase(horses: List<Horse>) =
         raceRepository.saveRaceResults(horses)
 
-
+    override suspend fun getHorseListUseCase(): List<Horse> =
+        raceRepository.getHorseList()
 }

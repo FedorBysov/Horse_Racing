@@ -1,6 +1,6 @@
 package com.example.navigation_impl
 
-object BottomNavigationFactory {
+
     /**
      * Возвращает список элементов для нижней навигации.
      *
@@ -15,4 +15,3 @@ object BottomNavigationFactory {
             BottomNavigationItem.Rating
         )
     }
-}

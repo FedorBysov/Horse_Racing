@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class RatingInteractorImpl @Inject constructor(
     private val ratingRepository: RatingRepository
-): RatingUseCase{
+): RatingInteractor{
     override fun getRaceHistoryUseCase(): Flow<List<RaceWithResults>> = ratingRepository.getRaceHistory()
 
     override suspend fun clearRaceHistoryUseCase() = ratingRepository.clearRaceHistory()
